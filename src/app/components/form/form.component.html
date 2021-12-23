@@ -1,0 +1,46 @@
+<form action="" class="userForm">
+  <h2 class="userForm__title">¿A quién le gusta la cerveza?</h2>
+  <div class="userForm__formGroup">
+    <label class="userForm__formGroup--label" for="name">Nombre</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      maxlength="30"
+      class="userForm__formGroup--textBox"
+    />
+  </div>
+  <div class="userForm__formGroup">
+    <label for="tel" class="userForm__formGroup--label">Teléfono</label>
+    <input
+      type="tel"
+      name="tel"
+      maxlength="9"
+      minlength="9"
+      id="tel"
+      class="userForm__formGroup--textBox"
+    />
+  </div>
+  <div class="userForm__formGroup">
+    <label for="dob" class="userForm__formGroup--label">Cumpleaños</label>
+    <input
+      type="date"
+      name="dob"
+      id="dob"
+      class="userForm__formGroup--textBox"
+    />
+  </div>
+  <div class="userForm_formGroup">
+    <span class="userForm__formGroup--label">Género</span>
+    <input type="radio" id="hombre" name="gender" value="hombre" />
+    <label for="hombre">Hombre</label>
+    <input type="radio" id="mujer" name="gender" value="mujer" />
+    <label for="mujer">Mujer</label>
+  </div>
+  <p class="userForm__bigQ">¿Qué cervezas te gustan?</p>
+  <div class="userForm__formCheck" *ngFor="let beer of this.beers">
+    <input type="checkbox" name="beers" id="beer_{{ beer.name }}" />
+    <label for="beer_{{ beer.name }}"></label>
+    {{ beer.name }}
+  </div>
+</form>
