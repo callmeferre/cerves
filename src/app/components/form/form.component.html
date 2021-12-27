@@ -1,4 +1,4 @@
-<form action="" class="userForm">
+<form action="" class="userForm" [formGroup]="beerForm">
   <h2 class="userForm__title">¿A quién le gusta la cerveza?</h2>
   <div class="userForm__formGroup">
     <label class="userForm__formGroup--label" for="name">Nombre</label>
@@ -6,6 +6,7 @@
       type="text"
       name="name"
       id="name"
+      formControlName="name"
       maxlength="30"
       class="userForm__formGroup--textBox"
     />
@@ -15,6 +16,7 @@
     <input
       type="tel"
       name="tel"
+      formControlName="tel"
       maxlength="9"
       minlength="9"
       id="tel"
@@ -27,20 +29,45 @@
       type="date"
       name="dob"
       id="dob"
+      formControlName="dob"
       class="userForm__formGroup--textBox"
     />
   </div>
   <div class="userForm_formGroup">
     <span class="userForm__formGroup--label">Género</span>
-    <input type="radio" id="hombre" name="gender" value="hombre" />
+    <input
+      type="radio"
+      id="hombre"
+      name="gender"
+      formControlName="gender"
+      value="hombre"
+    />
     <label for="hombre">Hombre</label>
-    <input type="radio" id="mujer" name="gender" value="mujer" />
+    <input
+      type="radio"
+      id="mujer"
+      name="gender"
+      formControlName="gender"
+      value="mujer"
+    />
     <label for="mujer">Mujer</label>
   </div>
   <p class="userForm__bigQ">¿Qué cervezas te gustan?</p>
-  <div class="userForm__formCheck" *ngFor="let beer of this.beers">
-    <input type="checkbox" name="beers" id="beer_{{ beer.name }}" />
+  <div
+    class="userForm__formCheck"
+    formArrayName="favBeers"
+    *ngFor="let beer of beers; let i = index"
+  >
+    <input
+      type="checkbox"
+      name="beers"
+      value="{{ beer.id }}"
+      id="beer_{{ beer.name }}"
+      [formControlName]="i"
+      (change)="onChangeBeer($event)"
+    />
     <label for="beer_{{ beer.name }}"></label>
     {{ beer.name }}
   </div>
+  <button (click)="onSubmit()">Añadir</button>
 </form>

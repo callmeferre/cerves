@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 
 import { BeerAPiService } from 'src/app/services/beer-api.service';
 import { Beer, CBeer } from 'src/app/beer';
@@ -12,28 +12,49 @@ import { Beer, CBeer } from 'src/app/beer';
 export class FormComponent implements OnInit {
   beers: Beer[] = [];
   beer!: Beer;
-  // beerForm: FormGroup;
+  beerForm!: FormGroup;
 
-  constructor(private beerService: BeerAPiService) {}
+  constructor(private fb: FormBuilder, private beerService: BeerAPiService) {}
 
   ngOnInit(): void {
-    this.beerService.getBeers().subscribe(
-      (cerves) =>
-        cerves.forEach((beer, i) => {
-          console.log(beer);
-          this.beer = new CBeer(
-            beer.id,
-            beer.name,
-            beer.image_url,
-            beer.description
-          );
-          this.beers.push(this.beer);
-          setTimeout(() => console.log(this.beers[i]), 1000);
-        })
-      // {
-      //   this.beers = cerves;
-      //   console.log(this.beers);
-      // }
+    this.beerService.getBeers().subscribe((cerves) =>
+      cerves.forEach((beer, i) => {
+        this.beer = new CBeer(
+          beer.id,
+          beer.name,
+          beer.image_url,
+          beer.description
+        );
+        this.beers.push(this.beer);
+      })
     );
+    this.initForm();
+  }
+
+  initForm(): void {
+    this.beerForm = this.fb.group({
+      name: '',
+      tel: '',
+      dob: '',
+      gender: '',
+      favBeers: this.fb.array([this.fb.control('')]),
+    });
+  }
+
+  get favBeers(): FormArray {
+    return this.beerForm.get('favBeers') as FormArray;
+  }
+
+  onChangeBeer($event: Event): void {
+    console.log($event);
+    const e = $event.target as HTMLInputElement;
+
+    const id = e.value;
+    const isChecked = e.checked;
+    console.log(this.favBeers.controls.values);
+  }
+
+  onSubmit(): void {
+    console.log(this.beerForm.value);
   }
 }

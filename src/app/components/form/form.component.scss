@@ -1,0 +1,7 @@
+.userForm {
+  background-color: var(--color-gray-light);
+  padding: 1rem;
+  max-width: 400px;
+  margin: var(--form-margin);
+  height: calc(100vh - (var(--form-margin) * 2));
+}
