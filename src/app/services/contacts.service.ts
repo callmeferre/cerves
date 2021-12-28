@@ -4,6 +4,12 @@ import { Observable, ObservableInput } from 'rxjs';
 
 import { Contact } from '../contact';
 
+const httpOptions = {
+  header: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+};
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,8 +22,13 @@ export class ContactsService {
     return this.httpClient.get<Contact[]>(this.apiUrl);
   }
 
-  deleteTask(contact: Contact): Observable<Contact> {
-    const url = `${this.apiUrl}/${contact.id}`;
-    return this.httpClient.delete<Contact>(url);
+  addContact(contact: Contact): Observable<Contact> {
+    console.log(contact);
+    return this.httpClient.post<Contact>(this.apiUrl, contact);
   }
+
+  // deleteContact(contact: Contact): Observable<Contact> {
+  //   const url = `${this.apiUrl}/${contact.id}`;
+  //   return this.httpClient.delete<Contact>(url);
+  // }
 }

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
 
 import { BeerAPiService } from 'src/app/services/beer-api.service';
 import { Beer, CBeer } from 'src/app/beer';
+import { Contact } from 'src/app/contact';
+import { ContactsService } from 'src/app/services/contacts.service';
+import { ListComponent } from '../list/list.component';
 
 @Component({
   selector: 'app-form',
@@ -13,6 +16,8 @@ export class FormComponent implements OnInit {
   beers: Beer[] = [];
   beer!: Beer;
   beerForm!: FormGroup;
+  selectedBeers: number = 0;
+  @Output() onAddContact: EventEmitter<Contact> = new EventEmitter();
 
   constructor(private fb: FormBuilder, private beerService: BeerAPiService) {}
 
@@ -37,7 +42,7 @@ export class FormComponent implements OnInit {
       tel: '',
       dob: '',
       gender: '',
-      favBeers: this.fb.array([this.fb.control('')]),
+      favBeers: this.fb.array([]),
     });
   }
 
@@ -46,15 +51,38 @@ export class FormComponent implements OnInit {
   }
 
   onChangeBeer($event: Event): void {
-    console.log($event);
     const e = $event.target as HTMLInputElement;
-
     const id = e.value;
-    const isChecked = e.checked;
-    console.log(this.favBeers.controls.values);
+    let isChecked = e.checked;
+
+    if (isChecked) {
+      if (this.selectedBeers < 3) {
+        this.selectedBeers++;
+        this.favBeers.value.push(id);
+      } else {
+        this.beerForm.controls['favBeers'].disable();
+      }
+    } else {
+      if (this.selectedBeers > 0) {
+        this.selectedBeers--;
+      }
+      const i = this.favBeers.value.indexOf(id);
+      this.favBeers.value.splice(i, 1);
+    }
+    console.log(this.favBeers);
+  }
+
+  public disableCheckbox(id: string | undefined): boolean {
+    if (this.favBeers.value.length >= 3 && !this.favBeers.value.includes(id)) {
+      return false;
+    } else {
+      return false;
+    }
   }
 
   onSubmit(): void {
-    console.log(this.beerForm.value);
+    const newContact: Contact = this.beerForm.value;
+    this.onAddContact.emit(newContact);
+    this.initForm();
   }
 }

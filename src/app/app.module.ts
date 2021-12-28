@@ -9,6 +9,7 @@ import { FormComponent } from './components/form/form.component';
 
 import { ListComponent } from './components/list/list.component';
 import { ListContactComponent } from './components/list-contact/list-contact.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ListContactComponent } from './components/list-contact/list-contact.com
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

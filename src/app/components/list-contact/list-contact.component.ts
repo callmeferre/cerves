@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { faBeer } from '@fortawesome/free-solid-svg-icons';
+
 import { Contact } from 'src/app/contact';
 
 @Component({
@@ -8,6 +10,7 @@ import { Contact } from 'src/app/contact';
 })
 export class ListContactComponent implements OnInit {
   @Input() contact!: Contact;
+  faBeer = faBeer;
 
   constructor() {}
 

@@ -2,7 +2,7 @@
   <p class="userCard__name">{{ contact.name }}</p>
   <div class="userCard__beers">
     <span class="userCard__beers--icon" *ngFor="let beer of contact.favBeers">
-      o
+      <fa-icon [icon]="faBeer"></fa-icon>
     </span>
   </div>
 </div>

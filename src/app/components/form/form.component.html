@@ -63,8 +63,8 @@
       name="beers"
       value="{{ beer.id }}"
       id="beer_{{ beer.name }}"
-      [formControlName]="i"
       (change)="onChangeBeer($event)"
+      [checked]="false"
     />
     <label for="beer_{{ beer.name }}"></label>
     {{ beer.name }}
