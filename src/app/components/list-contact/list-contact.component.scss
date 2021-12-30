@@ -1,8 +1,15 @@
 .userCard {
-  background: #f4f4f4;
+  min-width: 300px;
+  background-color: var(--color-secondary);
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+
+  &__beers {
+    width: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+  }
 }

@@ -1,17 +1,18 @@
 <form action="" class="userForm" [formGroup]="beerForm">
   <h2 class="userForm__title">¿A quién le gusta la cerveza?</h2>
-  <div class="userForm__formGroup">
+  <div class="userForm__formGroup full">
     <label class="userForm__formGroup--label" for="name">Nombre</label>
     <input
       type="text"
       name="name"
       id="name"
       formControlName="name"
+      required
       maxlength="30"
       class="userForm__formGroup--textBox"
     />
   </div>
-  <div class="userForm__formGroup">
+  <div class="userForm__formGroup mid">
     <label for="tel" class="userForm__formGroup--label">Teléfono</label>
     <input
       type="tel"
@@ -23,7 +24,7 @@
       class="userForm__formGroup--textBox"
     />
   </div>
-  <div class="userForm__formGroup">
+  <div class="userForm__formGroup mid">
     <label for="dob" class="userForm__formGroup--label">Cumpleaños</label>
     <input
       type="date"
@@ -33,41 +34,56 @@
       class="userForm__formGroup--textBox"
     />
   </div>
-  <div class="userForm_formGroup">
+  <div class="userForm__formGroup full">
     <span class="userForm__formGroup--label">Género</span>
-    <input
-      type="radio"
-      id="hombre"
-      name="gender"
-      formControlName="gender"
-      value="hombre"
-    />
-    <label for="hombre">Hombre</label>
-    <input
-      type="radio"
-      id="mujer"
-      name="gender"
-      formControlName="gender"
-      value="mujer"
-    />
-    <label for="mujer">Mujer</label>
+    <div class="userForm__formGroup--radio">
+      <input
+        type="radio"
+        id="hombre"
+        name="gender"
+        formControlName="gender"
+        value="hombre"
+      />
+      <label for="hombre">Hombre</label>
+    </div>
+    <div class="userForm__formGroup--radio">
+      <input
+        type="radio"
+        id="mujer"
+        name="gender"
+        formControlName="gender"
+        value="mujer"
+      />
+      <label for="mujer">Mujer</label>
+    </div>
   </div>
   <p class="userForm__bigQ">¿Qué cervezas te gustan?</p>
-  <div
-    class="userForm__formCheck"
-    formArrayName="favBeers"
-    *ngFor="let beer of beers; let i = index"
-  >
-    <input
-      type="checkbox"
-      name="beers"
-      value="{{ beer.id }}"
-      id="beer_{{ beer.name }}"
-      (change)="onChangeBeer($event)"
-      [checked]="false"
-    />
-    <label for="beer_{{ beer.name }}"></label>
-    {{ beer.name }}
+  <div class="userForm__formCheck">
+    <div
+      class="userForm__formCheckBox"
+      formArrayName="favBeers"
+      *ngFor="let beer of beers; let i = index"
+    >
+      <input
+        class="userForm__formCheck--box"
+        type="checkbox"
+        name="beers"
+        value="{{ beer.id }}"
+        id="beer_{{ beer.name }}"
+        (change)="onChangeBeer($event)"
+        [checked]="false"
+      />
+      <label class="userForm__formCheck--label" for="beer_{{ beer.name }}">{{
+        beer.name
+      }}</label>
+    </div>
   </div>
-  <button (click)="onSubmit()">Añadir</button>
+
+  <button
+    [disabled]="!beerForm.valid"
+    (click)="onSubmit()"
+    class="userForm__submit"
+  >
+    Añadir
+  </button>
 </form>

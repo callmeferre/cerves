@@ -6,15 +6,22 @@
       "tel": "2342356245",
       "dob": "1996-06-04",
       "gender": "mujer",
-      "favBeers": ["2", "6"]
+      "favBeers": [
+        "2",
+        "6"
+      ]
     },
     {
-      "id": 2,
-      "name": "Ana",
-      "tel": "2342356245",
-      "dob": "1996-06-04",
-      "gender": "mujer",
-      "favBeers": ["1", "4", "8"]
+      "name": "Carlos",
+      "tel": "647785347",
+      "dob": "2000-01-21",
+      "gender": "hombre",
+      "favBeers": [
+        "2",
+        "10",
+        "8"
+      ],
+      "id": 2
     }
   ]
 }

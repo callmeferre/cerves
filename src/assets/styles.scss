@@ -1,15 +1,20 @@
 @import "colors/colors";
 @import "fonts/fonts";
 @import "layout/layout";
+@import "mixin/mixin";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-primary);
+  color: var(--color-terciary-dark);
 }
 
 .container {
-  display: flex;
+  @include flex-center;
   flex-wrap: wrap;
+  background-color: var(--color-primary);
+  padding: var(--box-margin);
+  height: 100vh;
 }

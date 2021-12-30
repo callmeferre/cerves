@@ -22,13 +22,18 @@ export class ContactsService {
     return this.httpClient.get<Contact[]>(this.apiUrl);
   }
 
+  getContact(id: number): Observable<Contact> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.httpClient.get<Contact>(url);
+  }
+
   addContact(contact: Contact): Observable<Contact> {
     console.log(contact);
     return this.httpClient.post<Contact>(this.apiUrl, contact);
   }
 
   // deleteContact(contact: Contact): Observable<Contact> {
-  //   const url = `${this.apiUrl}/${contact.id}`;
+  //
   //   return this.httpClient.delete<Contact>(url);
   // }
 }

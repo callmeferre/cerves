@@ -1,3 +1,15 @@
 :root {
-  --form-margin: 1rem;
+  --box-margin: 2rem;
+}
+
+.full {
+  width: 100%;
+}
+
+.mid {
+  width: calc(50% - 1rem);
+}
+
+input[type="checkbox" i] {
+  background-color: green;
 }
