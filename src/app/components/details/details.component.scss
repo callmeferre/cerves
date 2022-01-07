@@ -1,0 +1,77 @@
+@import "../../../assets/mixin/mixin";
+
+.userInfo {
+  width: 100%;
+  @media all and (min-width: 768px) {
+    width: 30%;
+  }
+  &__back {
+    @include button(var(--color-secondary), var(--color-primary));
+    align-self: end;
+  }
+}
+
+.beerList {
+  width: 100%;
+  @media all and (min-width: 768px) {
+    width: 70%;
+  }
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-primary);
+  padding: 2rem;
+  color: var(--color-secondary);
+
+  &__tel {
+    color: var(--color-secondary);
+  }
+}
+
+.beerList {
+  background-color: var(--color-secondary);
+  padding: 1rem;
+  height: 100%;
+
+  &__list {
+    padding: 0.5rem;
+
+    @media all and (min-width: 768px) {
+      height: calc(
+        100vh - (2rem + var(--shadow-trans) + (var(--box-margin-h) * 2))
+      );
+      overflow-y: scroll;
+      @include custom-scroll(0.3rem, var(--color-primary));
+    }
+  }
+  &__beer {
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    overflow: hidden;
+
+    &--header {
+      background-color: var(--color-white);
+    }
+
+    &--img {
+      margin: 0 auto;
+      transform: rotate(54deg);
+      width: 4rem;
+    }
+
+    &--text {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      padding: 0.8rem;
+      padding-bottom: 2rem;
+    }
+
+    &--title {
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      color: var(--color-primary);
+    }
+  }
+}

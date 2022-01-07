@@ -11,7 +11,7 @@ import { ListComponent } from './components/list/list.component';
 import { ListContactComponent } from './components/list-contact/list-contact.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { DetailsComponent } from './components/details/details.component';
-import { CervesComponent } from './components/cerves/cerves.component';
+import { beersComponent } from './components/beers/beers.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { CervesComponent } from './components/cerves/cerves.component';
     ListComponent,
     ListContactComponent,
     DetailsComponent,
-    CervesComponent,
+    beersComponent,
   ],
   imports: [
     BrowserModule,

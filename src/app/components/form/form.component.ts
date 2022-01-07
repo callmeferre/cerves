@@ -1,5 +1,11 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import {
+  FormGroup,
+  FormBuilder,
+  FormArray,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { ElementRef } from '@angular/core';
 
 import { BeerAPiService } from 'src/app/services/beer-api.service';
@@ -25,8 +31,8 @@ export class FormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.beerService.getBeers().subscribe((cerves) =>
-      cerves.forEach((beer, i) => {
+    this.beerService.getBeers().subscribe((beers) =>
+      beers.forEach((beer, i) => {
         this.beer = new CBeer(
           beer.id,
           beer.name,
@@ -58,7 +64,7 @@ export class FormComponent implements OnInit {
     const id = e.value;
     let isChecked = e.checked;
     const checkBoxes = this.elementRef.nativeElement.querySelectorAll(
-      'input.userForm__formCheck--box'
+      'input.userForm__formCheckBox--box'
     );
     if (!isChecked) {
       this.selectedBeers--;

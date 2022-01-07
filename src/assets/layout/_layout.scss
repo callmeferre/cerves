@@ -1,5 +1,12 @@
 :root {
-  --box-margin: 2rem;
+  --box-margin-h: 3rem;
+  --shadow-trans: 1rem;
+  --box-margin: var(--box-margin-h) auto
+    calc(var(--box-margin-h) + var(--shadow-trans));
+}
+
+img {
+  width: 100%;
 }
 
 .full {
@@ -8,8 +15,4 @@
 
 .mid {
   width: calc(50% - 1rem);
-}
-
-input[type="checkbox" i] {
-  background-color: green;
 }

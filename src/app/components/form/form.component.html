@@ -1,7 +1,6 @@
 <form action="" class="userForm" [formGroup]="beerForm">
   <h2 class="userForm__title">¿A quién le gusta la cerveza?</h2>
   <div class="userForm__formGroup full">
-    <label class="userForm__formGroup--label" for="name">Nombre</label>
     <input
       type="text"
       name="name"
@@ -11,10 +10,22 @@
       maxlength="30"
       class="userForm__formGroup--textBox"
     />
+    <label class="userForm__formGroup--label" for="name">
+      Nombre
+      <span
+        class="userForm__formGroup--label-error"
+        *ngIf="
+          beerForm.controls['name'].invalid &&
+          (beerForm.controls['name'].dirty || beerForm.controls['name'].touched)
+        "
+      >
+        Este campo es obligatorio. Máximo 30 caracteres.
+      </span>
+    </label>
   </div>
   <div class="userForm__formGroup mid">
-    <label for="tel" class="userForm__formGroup--label">Teléfono</label>
     <input
+      required
       type="tel"
       name="tel"
       formControlName="tel"
@@ -23,39 +34,71 @@
       id="tel"
       class="userForm__formGroup--textBox"
     />
+    <label for="tel" class="userForm__formGroup--label">
+      Teléfono
+      <span
+        class="userForm__formGroup--label-error"
+        *ngIf="
+          beerForm.controls['tel'].invalid &&
+          (beerForm.controls['tel'].dirty || beerForm.controls['tel'].touched)
+        "
+      >
+        Debe tener 9 cifras.
+      </span>
+    </label>
   </div>
   <div class="userForm__formGroup mid">
-    <label for="dob" class="userForm__formGroup--label">Cumpleaños</label>
     <input
+      required
       type="date"
       name="dob"
       id="dob"
       formControlName="dob"
       class="userForm__formGroup--textBox"
     />
+    <label for="dob" class="userForm__formGroup--label">
+      Cumpleaños
+      <span
+        class="userForm__formGroup--label-error"
+        *ngIf="
+          beerForm.controls['dob'].invalid &&
+          (beerForm.controls['dob'].dirty || beerForm.controls['dob'].touched)
+        "
+      >
+        Es obligatorio.
+      </span>
+    </label>
   </div>
   <div class="userForm__formGroup full">
-    <span class="userForm__formGroup--label">Género</span>
     <div class="userForm__formGroup--radio">
       <input
+        required
         type="radio"
         id="hombre"
         name="gender"
         formControlName="gender"
         value="hombre"
+        class="userForm__formGroup--radio-radio"
       />
-      <label for="hombre">Hombre</label>
+      <span class="userForm__formGroup--radio-visual"></span>
+      <label for="hombre" class="userForm__formGroup--radio-label"
+        >Hombre</label
+      >
     </div>
     <div class="userForm__formGroup--radio">
       <input
+        required
         type="radio"
         id="mujer"
         name="gender"
         formControlName="gender"
         value="mujer"
+        class="userForm__formGroup--radio-radio"
       />
-      <label for="mujer">Mujer</label>
+      <span class="userForm__formGroup--radio-visual"></span>
+      <label for="mujer" class="userForm__formGroup--radio-label">Mujer</label>
     </div>
+    <span class="userForm__formGroup--label">Género</span>
   </div>
   <p class="userForm__bigQ">¿Qué cervezas te gustan?</p>
   <div class="userForm__formCheck">
@@ -65,7 +108,7 @@
       *ngFor="let beer of beers; let i = index"
     >
       <input
-        class="userForm__formCheck--box"
+        class="userForm__formCheckBox--box"
         type="checkbox"
         name="beers"
         value="{{ beer.id }}"
@@ -73,7 +116,8 @@
         (change)="onChangeBeer($event)"
         [checked]="false"
       />
-      <label class="userForm__formCheck--label" for="beer_{{ beer.name }}">{{
+      <span class="userForm__formCheckBox--visual"></span>
+      <label class="userForm__formCheckBox--label" for="beer_{{ beer.name }}">{{
         beer.name
       }}</label>
     </div>

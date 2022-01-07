@@ -8,13 +8,44 @@
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-primary);
-  color: var(--color-terciary-dark);
+}
+
+body {
+  color: var(--color-primary);
+  background-color: var(--color-secondary-light);
+  @include custom-scroll(1rem, var(--color-primary));
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
 }
 
 .container {
-  @include flex-center;
-  flex-wrap: wrap;
-  background-color: var(--color-primary);
-  padding: var(--box-margin);
-  height: 100vh;
+  &__box {
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: var(--shadow-trans) var(--shadow-trans) 0 var(--color-terciary);
+    @include flex-center;
+    flex-wrap: wrap;
+
+    @media all and (min-width: 480px) {
+      width: 80%;
+      overflow: hidden;
+      margin: var(--box-margin);
+      flex-direction: row;
+    }
+
+    @media all and (min-width: 1024px) {
+      width: 65%;
+    }
+
+    &--info,
+    &--list {
+      width: 100%;
+      @media all and (min-width: 768px) {
+        width: 50%;
+      }
+    }
+  }
 }

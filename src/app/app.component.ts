@@ -8,5 +8,5 @@ import { ContactsService } from './services/contacts.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'cerves';
+  title = 'beers';
 }

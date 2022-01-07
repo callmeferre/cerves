@@ -1,0 +1,8 @@
+<div class="container__box">
+  <div class="container__box--info">
+    <app-form (onAddContact)="list.addContact($event)"></app-form>
+  </div>
+  <div class="container__box--list">
+    <app-list #list></app-list>
+  </div>
+</div>

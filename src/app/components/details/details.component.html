@@ -1,4 +1,33 @@
-<div class="container">
-  <p>{{ person.name }}</p>
-  <button [routerLink]="['']">Volver</button>
+<div class="container__box">
+  <div class="userInfo">
+    <h1>{{ person.name }}</h1>
+
+    <p class="userInfo__info">
+      <span class="userInfo__info--date">{{ person.dob }}</span>
+      <span *ngIf="person.gender == 'hombre'" class="userInfo__info--gender">
+        <fa-icon [icon]="faMars"></fa-icon>
+      </span>
+      <span *ngIf="person.gender == 'mujer'" class="userInfo__info--gender">
+        <fa-icon [icon]="faVenus"></fa-icon>
+      </span>
+    </p>
+    <a href="tel:{{ person.tel }}" class="userInfo__tel">{{ person.tel }}</a>
+    <button class="userInfo__back" [routerLink]="['']">Volver</button>
+  </div>
+  <div class="beerList">
+    <div class="beerList__list">
+      <div class="beerList__beer" *ngFor="let beer of beers">
+        <div class="beerList__beer--header">
+          <div class="beerList__beer--img">
+            <img src="{{ beer.image_url }}" alt="" />
+          </div>
+          <h3 class="beerList__beer--title">{{ beer.name }}</h3>
+        </div>
+
+        <div class="beerList__beer--text">
+          {{ beer.description }}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

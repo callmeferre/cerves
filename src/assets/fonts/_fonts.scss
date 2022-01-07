@@ -1,5 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
 
 :root {
-  --font-primary: "Poppins", sans-serif;
+  --font-primary: "Lato", sans-serif;
+  --font-title: "Fredoka One", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  font-weight: 400;
 }
